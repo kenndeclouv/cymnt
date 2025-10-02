@@ -5,13 +5,17 @@ import random from "random";
 
 const path = "./data.json";
 
-const markCommit = (x, y) => {
-  const date = moment()
-    .subtract(1, "y")
-    .add(1, "d")
-    .add(x, "w")
-    .add(y, "d")
-    .format();
+// Helper to get a random date between 2021-01-01 and 2023-12-31
+function getRandomDateInRange() {
+  const start = moment("2021-01-01");
+  const end = moment("2023-12-31");
+  const diff = end.diff(start, "days");
+  const randomDays = random.int(0, diff);
+  return start.clone().add(randomDays, "days").format();
+}
+
+const markCommit = () => {
+  const date = getRandomDateInRange();
 
   const data = {
     date: date,
@@ -23,17 +27,15 @@ const markCommit = (x, y) => {
 };
 
 const makeCommits = (n) => {
-  if(n===0) return simpleGit().push();
-  const x = random.int(0, 54);
-  const y = random.int(0, 6);
-  const date = moment().subtract(1, "y").add(1, "d").add(x, "w").add(y, "d").format();
+  if (n === 0) return simpleGit().push();
+  const date = getRandomDateInRange();
 
   const data = {
     date: date,
   };
   console.log(date);
   jsonfile.writeFile(path, data, () => {
-    simpleGit().add([path]).commit(date, { "--date": date },makeCommits.bind(this,--n));
+    simpleGit().add([path]).commit(date, { "--date": date }, makeCommits.bind(this, --n));
   });
 };
 
