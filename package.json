@@ -1,7 +1,6 @@
 {
-  "name": "thomyorke",
+  "name": "cymnt",
   "version": "1.0.0",
-  "description": "nice dream",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -9,7 +8,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "jsonfile": "^6.1.0",
     "moment": "^2.30.1",

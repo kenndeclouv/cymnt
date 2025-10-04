@@ -5,7 +5,6 @@ import random from "random";
 
 const path = "./data.json";
 
-// Helper to get a random date between 2021-01-01 and 2023-12-31
 function getRandomDateInRange() {
   const start = moment("2021-01-01");
   const end = moment("2023-12-31");
